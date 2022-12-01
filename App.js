@@ -1,20 +1,68 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import { View, Text, Button, StyleSheet } from 'react-native';
+import { NavigationContainer, DrawerActions } from '@react-navigation/native';
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItemList,
+  DrawerItem,
+} from '@react-navigation/drawer';
+
+function Home({ navigation }) {
+  return(
+    <View>
+      <Text>Home Page</Text>
+    </View>
+  )
+}
+
+function Info() {
+  return(
+    <View>
+      <Text>Info Page</Text>
+    </View>
+  )
+}
+
+function About() {
+  return(
+    <View>
+      <Text>About Page</Text>
+    </View>
+  )
+}
+
+
+const Drawer = createDrawerNavigator();
+
+function MyDrawer() {
+  return (
+    <Drawer.Navigator useLegacyImplementation screenOptions={{
+      drawerStyle: {
+      } 
+    }}> 
+      
+        <Drawer.Screen name='Home' component={Home} />
+        <Drawer.Screen name='Info' component={Info} />
+        <Drawer.Screen name='About' component={About} />
+      
+    </Drawer.Navigator>
+  )
+}
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <NavigationContainer>
+        <MyDrawer />
+      </NavigationContainer>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    marginTop: 50,
+    backgroundColor: '#FBF2F1'
+  }
 });
